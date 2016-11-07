@@ -1,5 +1,6 @@
-/**
- *手机问答系统的基本构成 
+
+ /**
+  * 手机问答系统的基本构成 
  * 
  */
 package fulton.shaw.android.tellme;

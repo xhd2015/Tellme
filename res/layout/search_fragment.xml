@@ -9,21 +9,30 @@
 
         <EditText
             android:id="@+id/editText1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7"
+            android:layout_weight="0.5"
             android:ems="10" >
 
             <requestFocus android:layout_width="wrap_content" />
 
         </EditText>
 
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:entries="@array/spinnerTypes"
+            android:prompt="@string/spinnerPrompt"
+            android:spinnerMode="dropdown" />
+        
         <Button
             android:id="@+id/button1"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_weight="0.25"
             android:text="Search" />
 
     </LinearLayout>

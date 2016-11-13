@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.util.Log;
-import fulton.util.java.Util;
 
 public class SearchContentProvide {
 	

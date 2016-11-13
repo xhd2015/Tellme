@@ -25,6 +25,10 @@ public class MainActivity extends Activity implements OnClickListener
 	
 	FrameLayout mContainer;
 	SearchFragment mSearchPage;
+	DetailPageFragment mDetailedPage;
+	Fragment mAskPage;
+	Fragment mPersonalPage;
+	
 	Button mSearchBtn,mPostQuestion,mDetails,mPersonal;
 	
 	Fragment mCurrentPage;
@@ -56,8 +60,14 @@ public class MainActivity extends Activity implements OnClickListener
 	void initFileds()
 	{
 		mContainer=(FrameLayout)findViewById(R.id.frameLayout1);
+		//Add each page here
 		mSearchPage=new SearchFragment();
+		mDetailedPage=new DetailPageFragment();
+		
 		mPages.put(R.id.button1, mSearchPage);
+		mPages.put(R.id.button2, mAskPage);
+		mPages.put(R.id.button3, mDetailedPage);
+		mPages.put(R.id.button4, mPersonalPage);
 		
 		mSearchBtn=(Button)findViewById(R.id.button1);
 		mPostQuestion=(Button)findViewById(R.id.button2);
@@ -72,20 +82,32 @@ public class MainActivity extends Activity implements OnClickListener
 	 */
 	void onChangeButton(Button which)
 	{
-		Fragment f=mPages.get(which.getId());
+		final Fragment f=mPages.get(which.getId());
 		if(f!=mCurrentPage)
 		{
-			changePage(f);
+			runOnUiThread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					changePage(f);
+				}
+			});
 		}
 	}
+	/*!NOT UI SAFE!*/
 	void changePage(Fragment f)
 	{
 		FragmentManager m=getFragmentManager();
 		FragmentTransaction t=m.beginTransaction();
-		t.add(R.id.frameLayout1, f);
+		t.replace(R.id.frameLayout1, f);
 		t.commit();
 		mCurrentPage=f;
 	}
+	/**
+	 * This is generally for 4 buttons and other activity level 
+	 * widgets
+	 */
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -110,7 +132,26 @@ public class MainActivity extends Activity implements OnClickListener
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
+		}else if(id==R.id.action_exit)
+		{
+			this.finish();
+			return true;
+		}else{
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
+	}
+	public void changeToDetail(String title,String url)
+	{
+		final String ftitle=title;
+		final String fUrl=url;
+		changePage(mDetailedPage);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				MainActivity.this.getFragmentManager().executePendingTransactions();
+				mDetailedPage.openURL(ftitle, fUrl);
+			}
+		});
 	}
 }

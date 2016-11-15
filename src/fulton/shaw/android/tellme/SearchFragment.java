@@ -1,5 +1,6 @@
 package fulton.shaw.android.tellme;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ import fulton.shaw.android.tellme.adapter.ResAdapter;
 import fulton.shaw.android.tellme.provider.SearchContentProvide;
 import fulton.util.android.searcher.ContentManager;
 
-public class SearchFragment extends Fragment implements View.OnClickListener{
+public class SearchFragment extends Fragment implements View.OnClickListener,Serializable{
 	public static final String TAG="fulton.shaw.android.tellme.SearchFragment";
 	
 	Button mSearchBtn;

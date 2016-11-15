@@ -63,6 +63,8 @@ public class MainActivity extends Activity implements OnClickListener
 		//Add each page here
 		mSearchPage=new SearchFragment();
 		mDetailedPage=new DetailPageFragment();
+		mPersonalPage=new PersonalFragment();
+		mAskPage=new AskFragment();
 		
 		mPages.put(R.id.button1, mSearchPage);
 		mPages.put(R.id.button2, mAskPage);

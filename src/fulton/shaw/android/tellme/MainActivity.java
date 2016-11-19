@@ -8,19 +8,21 @@ package fulton.shaw.android.tellme;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import fulton.shaw.android.tellme.newdesign.ViewPagerActivity;
 
-public class MainActivity extends Activity implements OnClickListener
+public class MainActivity extends FragmentActivity implements OnClickListener
 {
 	
 	FrameLayout mContainer;
@@ -40,7 +42,7 @@ public class MainActivity extends Activity implements OnClickListener
 		
 		initFileds();
 		
-		FragmentManager m=getFragmentManager();
+		FragmentManager m=getSupportFragmentManager();
 		FragmentTransaction t = m.beginTransaction();
 		
 		/*
@@ -100,7 +102,7 @@ public class MainActivity extends Activity implements OnClickListener
 	/*!NOT UI SAFE!*/
 	void changePage(Fragment f)
 	{
-		FragmentManager m=getFragmentManager();
+		FragmentManager m=getSupportFragmentManager();
 		FragmentTransaction t=m.beginTransaction();
 		t.replace(R.id.frameLayout1, f);
 		t.commit();
@@ -134,9 +136,12 @@ public class MainActivity extends Activity implements OnClickListener
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
-		}else if(id==R.id.action_exit)
-		{
+		}else if(id==R.id.action_exit){
 			this.finish();
+			return true;
+		}else if(id==R.id.action_open_activity){
+			Intent intent=new Intent(this,ViewPagerActivity.class);
+			startActivity(intent);
 			return true;
 		}else{
 			return super.onOptionsItemSelected(item);
@@ -144,6 +149,7 @@ public class MainActivity extends Activity implements OnClickListener
 	}
 	public void changeToDetail(String title,String url)
 	{
+		
 		final String ftitle=title;
 		final String fUrl=url;
 		changePage(mDetailedPage);

@@ -10,4 +10,15 @@
         <item>Yahoo Answer</item>
         <item>Baidu Ask</item>
     </string-array>
+    <string-array name="known_bugs">
+        <item>App crash on screen rotation</item>
+        <item>Indirect while slading into other tabs</item>
+   		<item></item>
+    </string-array>
+    <string-array name="references">
+        <!-- for selector,how to change button style -->
+        <item>http://stackoverflow.com/questions/4489069/android-button-style</item>
+    	<item>http://stackoverflow.com/questions/6674341/how-to-use-scrollview-in-android</item>
+        <item>http://stackoverflow.com/questions/3769762/android-color-xml-resource-file</item>
+    </string-array>
 </resources>

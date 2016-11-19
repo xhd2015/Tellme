@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent" 
+     android:fillViewport="true"
+     android:scrollbars = "vertical"
+     android:scrollbarStyle="insideInset"
+     >
+
+<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <EditText
             android:id="@+id/editText1"
@@ -26,8 +34,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
+            android:background="@drawable/button_selector_default"
+            style="@style/ButtonText"
             android:text=">>Give Us Feedback" />
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Known Bugs and Enhancements" />
+	
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:entries="@array/known_bugs"
+        >
+        
+
+</ListView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="References" />
+    
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/references"
+        >
+        
+    </ListView>
+
 </LinearLayout>
+</ScrollView>

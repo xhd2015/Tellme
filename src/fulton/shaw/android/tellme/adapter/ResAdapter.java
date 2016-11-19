@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,8 +19,8 @@ import fulton.shaw.android.tellme.R;
 public class ResAdapter extends BaseAdapter{
 	ArrayList<HashMap<String,String>> mRes;
 	LayoutInflater mInflater;
-	MainActivity mActivity;
-	public ResAdapter(MainActivity activity) {
+	FragmentActivity mActivity;
+	public ResAdapter(FragmentActivity activity) {
 		// TODO Auto-generated constructor stub
 		mInflater=activity.getLayoutInflater();
 		mActivity=activity;
@@ -64,9 +65,14 @@ public class ResAdapter extends BaseAdapter{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					mActivity.changeToDetail(
+					if(mActivity instanceof MainActivity)
+					{
+					((MainActivity) mActivity).changeToDetail(
 							title.getText().toString(),
 							mRes.get(fpos).get("url"));
+					}else{
+						//do nothing
+					}
 				}
 			});
 		}

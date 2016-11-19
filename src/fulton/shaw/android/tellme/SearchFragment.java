@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.app.Fragment;
-import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,7 +80,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener,Ser
 		
 		
 		
-		mListRes.setAdapter(new ResAdapter((MainActivity)getActivity()));
+		mListRes.setAdapter(new ResAdapter(getActivity()));
 	}
 
 	@Override

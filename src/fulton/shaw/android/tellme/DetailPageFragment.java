@@ -2,6 +2,7 @@ package fulton.shaw.android.tellme;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,13 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 public class DetailPageFragment extends Fragment {
-
+	
+	private final static String TITLE="x_title",WEB="x_web";
+	public static final String TAG="DetailedPage";
 	WebView mWeber;
 	TextView mTitle;
+	Bundle mSavedState=new Bundle();
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -46,21 +51,21 @@ public class DetailPageFragment extends Fragment {
 		
 		WebSettings settings=mWeber.getSettings();
 		settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		settings.setSupportZoom(true);
+		settings.setBuiltInZoomControls(true);
 		settings.setJavaScriptEnabled(true);
 		settings.setJavaScriptCanOpenWindowsAutomatically(true);
 		settings.setAppCacheEnabled(true);
 		settings.setSaveFormData(true);
 	}
 	
+
 	/*!not ui safe!*/
 	public void openURL(String title,String url)
 	{
 		// TODO Auto-generated method stub
-
 		mTitle.setText(title);
 		mWeber.loadUrl(url);
-		
-		
 	}
 	
 }

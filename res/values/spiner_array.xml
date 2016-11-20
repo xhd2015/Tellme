@@ -20,5 +20,7 @@
         <item>http://stackoverflow.com/questions/4489069/android-button-style</item>
     	<item>http://stackoverflow.com/questions/6674341/how-to-use-scrollview-in-android</item>
         <item>http://stackoverflow.com/questions/3769762/android-color-xml-resource-file</item>
-    </string-array>
+    	<item>http://stackoverflow.com/questions/10258772/android-webview-savestate</item>
+ 		<item>http://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application</item>
+   	</string-array>
 </resources>

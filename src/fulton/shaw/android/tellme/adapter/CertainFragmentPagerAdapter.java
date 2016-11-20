@@ -16,20 +16,26 @@ import fulton.shaw.android.tellme.SearchFragment;
 public class CertainFragmentPagerAdapter extends FragmentPagerAdapter {
 	private List<Object> mFragments=new ArrayList<Object>();
 	private List<CharSequence> mTitles=new ArrayList<CharSequence>();
+	public static int ASK=0,SEARCH=1,DETAIL=2,PERSONAL=3;
 	
 	public CertainFragmentPagerAdapter(android.support.v4.app.FragmentManager fragmentManager) {
 		super(fragmentManager);
 		// TODO Auto-generated constructor stub
-		mFragments.add(new SearchFragment());
 		mFragments.add(new AskFragment());
+		mFragments.add(new SearchFragment());
 		mFragments.add(new DetailPageFragment());
 		mFragments.add(new PersonalFragment());
 		
-		mTitles.add("Search");
+		
 		mTitles.add("Ask");
+		mTitles.add("Search");
 		mTitles.add("Details");
 		mTitles.add("Personal");
 		
+		for(Object f:mFragments)
+		{
+			((Fragment)f).setRetainInstance(true);
+		}
 		
 	}
 	@Override

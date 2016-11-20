@@ -23,12 +23,16 @@ import fulton.util.android.searcher.ContentManager;
 
 public class SearchFragment extends Fragment implements View.OnClickListener,Serializable{
 	public static final String TAG="fulton.shaw.android.tellme.SearchFragment";
+	private static final String WORD="word",LIST="list",TYPE="type",POSITION="position";
 	
 	Button mSearchBtn;
 	ListView mListRes;
 	TextView mPrompt;
 	EditText mWord;
 	Spinner mType;
+	ResAdapter mAdapter;
+	
+	Bundle mSavedState=new Bundle();
 	
 	
 	@Override
@@ -38,8 +42,21 @@ public class SearchFragment extends Fragment implements View.OnClickListener,Ser
 		View v=inflater.inflate(R.layout.search_fragment, container,false);
 		initFileds(v,inflater);
 		mSearchBtn.setOnClickListener(this);
-		restoreInstanceState(savedInstanceState);
 		return v;
+	}
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		saveSate();
+		Log.d(TAG, "onPause");
+		super.onPause();
+	}
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.d(TAG, "onResume");
+		resumeState();
 	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,27 +65,32 @@ public class SearchFragment extends Fragment implements View.OnClickListener,Ser
 		
 	}
 	
-
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
 		super.onSaveInstanceState(outState);
-		outState.putString("word", mWord.getText().toString());
+		Log.d("SearchFragment--save instance", "null state?"+(outState==null));
+		outState.putString("word", "I have been saved");//mWord.getText().toString());
 	}
-	public void restoreInstanceState(Bundle inState)
+	private void saveSate()
 	{
-		final Bundle fstate=inState;
-		if(fstate!=null)
-		{
-			getActivity().runOnUiThread(new Runnable() {
-				
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					mWord.setText(fstate.getString("word"));
-				}
-			});
-		}
+		mSavedState.putString(WORD, mWord.getText().toString());
+		mSavedState.putSerializable(LIST,mAdapter.getRes());
+		mSavedState.putInt(POSITION, mListRes.getScrollY());
+	}
+	private void resumeState()
+	{
+		getActivity().runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				mWord.setText(mSavedState.getString(WORD));
+				mListRes.setScrollY(mSavedState.getInt(POSITION));
+				setSearchRes((ArrayList<HashMap<String, String>>) mSavedState.getSerializable(LIST));
+			}
+		});
 	}
 	void initFileds(View v,LayoutInflater inflater)
 	{
@@ -77,10 +99,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener,Ser
 		mPrompt=(TextView) v.findViewById(R.id.textView1);
 		mWord=(EditText) v.findViewById(R.id.editText1);
 		mType=(Spinner)v.findViewById(R.id.spinner1);
+		mAdapter=new ResAdapter(getActivity());
 		
 		
-		
-		mListRes.setAdapter(new ResAdapter(getActivity()));
+		mListRes.setAdapter(mAdapter);
 	}
 
 	@Override
@@ -88,62 +110,73 @@ public class SearchFragment extends Fragment implements View.OnClickListener,Ser
 		// TODO Auto-generated method stub
 		if(v==mSearchBtn)
 		{
-			doSearch();
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					doSearchAsideUi();
+				}
+			}).start();
+			
 		}
 	}
-	void doSearch()
+	/**
+	 * This is run aside UI
+	 */
+	void doSearchAsideUi()
 	{
+			
 		Log.v(TAG, "do search");
-		setPrompt("Searching");
-		final HashMap<String, String> table=new HashMap<String, String>();
-		table.put("Yahoo", "yahoo");
-		new Thread(new Runnable() {
+		getActivity().runOnUiThread(new Runnable() {
 			
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				String type=table.get(mType.getSelectedItem().toString());
-				String word=mWord.getText().toString();
-				String prompt="";
-				ArrayList<HashMap<String, String>> res = ContentManager.searchFor(word, type);
-				setSearchRes(res);
-
-				prompt="Search Finished";
-				if(res.size()<10)
-				{
-					prompt=prompt+" ,"+res.size()+" Results.";
-				}
-				setPrompt(prompt);
+				setPrompt("Searching");
 			}
-		}).start();
-	}
-	void setPrompt(String s)
-	{
-		final String fs=s;
+		});		
+		
+		HashMap<String, String> table=new HashMap<String, String>();
+		table.put("Yahoo", "yahoo");
+
+		// TODO Auto-generated method stub
+		String type=table.get(mType.getSelectedItem().toString());
+		String word=mWord.getText().toString();
+		String prompt="";
+		Log.v(TAG, "Search for:"+word+":"+type);
+		final ArrayList<HashMap<String, String>> res = ContentManager.searchFor(word, type);
+
+		prompt="Search Finished";
+		if(res.size()<10)
+		{
+			prompt=prompt+" ,"+res.size()+" Results.";
+		}
+		
+		final String fprompt=prompt;
 		getActivity().runOnUiThread(new Runnable() {
+			
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				mPrompt.setText(fs);
+				setPrompt("");
+				setSearchRes(res);
+				setPrompt(fprompt);
 			}
 		});
+
+
+	}
+	void setPrompt(String s)
+	{
+		mPrompt.setText(s);
 	}
 	//For list view
 	void setSearchRes(ArrayList<HashMap<String, String>> res)
 	{
-		final ResAdapter adapter=(ResAdapter) mListRes.getAdapter();
-		adapter.setRes(res);
-		getActivity().runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				adapter.notifyDataSetInvalidated();
-			}
-		});
-//		
+		mAdapter.setRes(res);
+		mAdapter.notifyDataSetInvalidated();	
 	}
 	
-
-
 	
 }

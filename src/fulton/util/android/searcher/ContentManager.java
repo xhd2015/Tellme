@@ -12,6 +12,7 @@ import java.util.HashMap;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import android.util.Log;
 import fulton.util.android.searcher.processors.AskubuntuProcessor;
 import fulton.util.android.searcher.processors.BaiduZhidaoProcessor;
 import fulton.util.android.searcher.processors.GuokrProcessor;
@@ -53,10 +54,12 @@ public class ContentManager {
 	public static Document getDocument(String url)
 	{
 		try {
+			
 			return Jsoup.connect(url).userAgent(userAgent).get();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Log.d("*Exception*", e.toString());
 			return null;
 		}
 	}
@@ -84,12 +87,18 @@ public class ContentManager {
 			e.printStackTrace();
 		}
 	}
-	//--------------- These ARE NOT original (means they're based on the functions previous defined------------
+	//--------------- These ARE NOT original (means they're based on the functions previously defined------------
 	public static ArrayList<HashMap<String,String>> searchFor(String word,String type)
 	{
 		String url=ContentManager.getUrl(word, type);
+		Log.v("SearchFragment", "URL="+url);
 		Document doc=ContentManager.getDocument(url);
+
 		ContentProcessor p=getProcessor(type);
+		if(doc==null || p==null)
+		{
+			return new ArrayList<HashMap<String,String>>();
+		}
 		return p.process(doc);
 	}
 }

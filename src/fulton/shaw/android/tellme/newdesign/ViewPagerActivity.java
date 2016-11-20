@@ -5,22 +5,25 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import fulton.shaw.android.tellme.DetailPageFragment;
+import fulton.shaw.android.tellme.MainActivity;
 import fulton.shaw.android.tellme.R;
 import fulton.shaw.android.tellme.adapter.CertainFragmentPagerAdapter;
 
 public class ViewPagerActivity extends FragmentActivity{
 	FragmentPagerAdapter mAdapterViewPager;
+	ViewPager mVPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_viewpagers);
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        mVPager = (ViewPager) findViewById(R.id.vpPager);
         mAdapterViewPager = new CertainFragmentPagerAdapter(getSupportFragmentManager());
-        vpPager.setAdapter(mAdapterViewPager);
+        mVPager.setAdapter(mAdapterViewPager);
+        mVPager.setCurrentItem(CertainFragmentPagerAdapter.SEARCH);
         
         
-        
-        vpPager.addOnPageChangeListener(new OnPageChangeListener() {
+        mVPager.addOnPageChangeListener(new OnPageChangeListener() {
 			
 			@Override
 			public void onPageSelected(int arg0) {
@@ -38,6 +41,19 @@ public class ViewPagerActivity extends FragmentActivity{
 			public void onPageScrollStateChanged(int arg0) {
 				// TODO Auto-generated method stub
 				
+			}
+		});
+    }
+    public void changeToDetail(String title,String url)
+    {
+		final String ftitle=title;
+		final String fUrl=url;
+		mVPager.setCurrentItem(CertainFragmentPagerAdapter.DETAIL);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				((DetailPageFragment)mAdapterViewPager.getItem(CertainFragmentPagerAdapter.DETAIL)).openURL(ftitle, fUrl);
 			}
 		});
     }

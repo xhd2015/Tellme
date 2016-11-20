@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import fulton.shaw.android.tellme.MainActivity;
 import fulton.shaw.android.tellme.R;
+import fulton.shaw.android.tellme.newdesign.ViewPagerActivity;
 
 public class ResAdapter extends BaseAdapter{
 	ArrayList<HashMap<String,String>> mRes;
@@ -29,6 +30,11 @@ public class ResAdapter extends BaseAdapter{
 	{
 		mRes=res;
 	}
+	public ArrayList<HashMap<String,String>> getRes()
+	{
+		return mRes;
+	}
+	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
@@ -70,8 +76,11 @@ public class ResAdapter extends BaseAdapter{
 					((MainActivity) mActivity).changeToDetail(
 							title.getText().toString(),
 							mRes.get(fpos).get("url"));
-					}else{
-						//do nothing
+					}else if(mActivity  instanceof ViewPagerActivity) {
+						((ViewPagerActivity) mActivity).changeToDetail(
+							title.getText().toString(),
+							mRes.get(fpos).get("url"));
+						
 					}
 				}
 			});

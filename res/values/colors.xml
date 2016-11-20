@@ -16,6 +16,8 @@
  <color name="blue">#0000FF</color>
  <color name="navy">#000080</color>
  <color name="black">#000000</color>
+  <color name="c1">#171717</color>
+   <color name="c2">#343434</color>
  
  <color name="button_general">#00a0aa</color>
 </resources>

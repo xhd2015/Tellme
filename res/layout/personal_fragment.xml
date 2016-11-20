@@ -2,11 +2,16 @@
  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
      android:layout_height="match_parent" 
-     android:fillViewport="true"
+     
      android:scrollbars = "vertical"
      android:scrollbarStyle="insideInset"
+     android:fillViewport="true"
+     
      >
-
+<!-- 
+	
+     
+ -->
 <LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -48,12 +53,9 @@
 	
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:entries="@array/known_bugs"
-        >
-        
-
-</ListView>
+        android:layout_height="180dp"
+        android:entries="@array/known_bugs" >
+	</ListView>
 
     <TextView
         android:id="@+id/textView2"
@@ -63,11 +65,22 @@
     
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/references"
-        >
+        android:layout_height="400dp"
+        android:entries="@array/references" >
         
     </ListView>
+        <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This app can lead you to search and post questions,but it is more a bridge than a provider."
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>
 </ScrollView>

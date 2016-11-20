@@ -31,7 +31,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/button_selector_default"
  			 style="@style/ButtonText"
-            android:text="Next >>" />
+            android:text="Get It>>" />
 
     </LinearLayout>
 

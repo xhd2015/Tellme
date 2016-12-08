@@ -7,10 +7,9 @@
      <TextView
          android:id="@+id/textView_detailed_1"
          android:layout_width="match_parent"
-         android:layout_height="0dp"
-         android:layout_weight="0.1"
+         android:layout_height="wrap_content"
          android:gravity="center"
-         android:text="Title"
+         android:text="Question Expired"
          android:textAppearance="?android:attr/textAppearanceLarge"
          android:textColor="@color/c1" />
      
@@ -18,9 +17,8 @@
         android:id="@+id/webView_detailed_1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="0dp"
         android:layout_weight="0.9"
-        android:padding="0dp" 
+         
         
         />
 

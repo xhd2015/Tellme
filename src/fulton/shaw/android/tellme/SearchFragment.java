@@ -139,6 +139,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener,Ser
 		
 		HashMap<String, String> table=new HashMap<String, String>();
 		table.put("Yahoo", "yahoo");
+		table.put("Zhihu", "zhihu");
+		table.put("Baidu Answer", "baiduzhidao");
+		table.put("Guokr", "guokr");
+		table.put("Stackoverflow", "stackoverflow");
+		table.put("Askubuntu", "askubuntu");
 
 		// TODO Auto-generated method stub
 		String type=table.get(mType.getSelectedItem().toString());

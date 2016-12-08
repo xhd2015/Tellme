@@ -20,12 +20,17 @@ public class AskubuntuProcessor implements ContentProcessor {
 		Elements title=base.select(".result-link").select("a");
 		Elements href=base.select(".result-link").select("a");
 		Elements brief=base.select(".excerpt");
-		
+		String temp;
 		for(int i=0;i!=title.size();i++)
 		{
 			one=new HashMap<String,String>();
 			one.put("title",title.get(i).text());
-			one.put("url",href.get(i).attr("href"));
+			temp=href.get(i).attr("href");
+			if(!temp.startsWith("http"))
+			{
+				temp=getBaseUrl()+temp;
+			}
+			one.put("url",temp);
 			one.put("brief",brief.get(i).text());
 			res.add(one);
 		}

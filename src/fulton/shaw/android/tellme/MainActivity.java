@@ -139,10 +139,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener
 		}else if(id==R.id.action_exit){
 			this.finish();
 			return true;
-		}else if(id==R.id.action_open_activity){
-			Intent intent=new Intent(this,ViewPagerActivity.class);
-			startActivity(intent);
-			return true;
 		}else{
 			return super.onOptionsItemSelected(item);
 		}

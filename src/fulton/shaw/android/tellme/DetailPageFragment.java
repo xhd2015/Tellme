@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 public class DetailPageFragment extends Fragment {
@@ -50,13 +51,19 @@ public class DetailPageFragment extends Fragment {
 		mTitle=(TextView)v.findViewById(R.id.textView_detailed_1);
 		
 		WebSettings settings=mWeber.getSettings();
-		settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		settings.setSupportZoom(true);
 		settings.setBuiltInZoomControls(true);
 		settings.setJavaScriptEnabled(true);
 		settings.setJavaScriptCanOpenWindowsAutomatically(true);
-		settings.setAppCacheEnabled(true);
 		settings.setSaveFormData(true);
+		settings.setAllowFileAccess(true);
+		mWeber.setWebViewClient(new WebViewClient(){
+		  @Override
+		  public boolean shouldOverrideUrlLoading(WebView view, String url) {
+           view.loadUrl(url);
+           return true;
+	     }
+		});
 	}
 	
 
@@ -64,6 +71,7 @@ public class DetailPageFragment extends Fragment {
 	public void openURL(String title,String url)
 	{
 		// TODO Auto-generated method stub
+		//url="http://m.sm.cn";
 		mTitle.setText(title);
 		mWeber.loadUrl(url);
 	}

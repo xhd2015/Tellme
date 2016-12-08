@@ -1,10 +1,13 @@
 package fulton.shaw.android.tellme.newdesign;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.Menu;
+import android.view.MenuItem;
 import fulton.shaw.android.tellme.DetailPageFragment;
 import fulton.shaw.android.tellme.MainActivity;
 import fulton.shaw.android.tellme.R;
@@ -57,6 +60,28 @@ public class ViewPagerActivity extends FragmentActivity{
 			}
 		});
     }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}else if(id==R.id.action_exit){
+			this.finish();
+			return true;
+		}else{
+			return super.onOptionsItemSelected(item);
+		}
+	}
 }
 
 /**Reference

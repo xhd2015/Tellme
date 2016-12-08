@@ -20,12 +20,17 @@ public class GuokrProcessor implements ContentProcessor {
 		Elements title=base.select("h2").select("a");
 		Elements href=base.select("h2").select("a"); 
 		Elements brief=base.select(".items-post").select("p");
-		
+		String temp;
 		for(int i=0;i!=title.size();i++)
 		{
 			one=new HashMap<String,String>();
 			one.put("title",title.get(i).text());
-			one.put("url",href.get(i).attr("href"));
+			temp=href.get(i).attr("href");
+			if(!temp.startsWith("http"))
+			{
+				temp=getBaseUrl()+temp;
+			}
+			one.put("url",temp);
 			one.put("brief",brief.get(2*i).text());
 			res.add(one);
 		}

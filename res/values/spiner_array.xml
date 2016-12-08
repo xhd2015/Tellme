@@ -3,12 +3,15 @@
     <string-array name="spinnerTypes">
         <item>Yahoo</item>
         <item>Zhihu</item>
-        <item>Baidu Ask</item>
+        <item>Baidu Answer</item>
+        <item>Guokr</item>
+        <item>Stackoverflow</item>
+        <item>Askubuntu</item>
     </string-array>
     <string-array name="ask_types">
         <item>Stackoverflow</item>
         <item>Yahoo Answer</item>
-        <item>Baidu Ask</item>
+        <item>Baidu Answer</item>
     </string-array>
     <string-array name="known_bugs">
         <item>App crash on screen rotation</item>
@@ -22,5 +25,7 @@
         <item>http://stackoverflow.com/questions/3769762/android-color-xml-resource-file</item>
     	<item>http://stackoverflow.com/questions/10258772/android-webview-savestate</item>
  		<item>http://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application</item>
-   	</string-array>
+   		<!-- to use webclientview  -->
+ 			<item>http://www.cnblogs.com/menlsh/p/3139498.html</item>
+ 			</string-array>
 </resources>

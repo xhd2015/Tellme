@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
+import fulton.shaw.android.tellme.newdesign.ViewPagerActivity;
 
 public class AskFragment extends Fragment{
 	View mRootView;
@@ -58,6 +59,7 @@ public class AskFragment extends Fragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				/*
 				String packageName = "com.android.browser"; 
 				String className = "com.android.browser.BrowserActivity"; 
 				Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -66,7 +68,12 @@ public class AskFragment extends Fragment{
 				
 				intent.setData(Uri.parse(mMapper.get(mType.getSelectedItem().toString())));
 				startActivity(Intent.createChooser(intent, "Open..."));
-				
+				*/ //old story
+				final String type=mType.getSelectedItem().toString();
+				((ViewPagerActivity)getActivity()).changeToDetail(
+						"Ask: "+type,
+						mMapper.get(type)
+						);
 			}
 		});
 	}

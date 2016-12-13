@@ -5,10 +5,12 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DetailPageFragment extends Fragment {
@@ -18,6 +20,7 @@ public class DetailPageFragment extends Fragment {
 	WebView mWeber;
 	TextView mTitle;
 	Bundle mSavedState=new Bundle();
+	Button	mBack,mForward;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,9 +50,10 @@ public class DetailPageFragment extends Fragment {
 
 	void initFields(View v)
 	{
-		mWeber=(WebView) v.findViewById(R.id.webView_detailed_1);
+		
 		mTitle=(TextView)v.findViewById(R.id.textView_detailed_1);
 		
+		mWeber=(WebView) v.findViewById(R.id.webView_detailed_1);
 		WebSettings settings=mWeber.getSettings();
 		settings.setSupportZoom(true);
 		settings.setBuiltInZoomControls(true);
@@ -63,6 +67,25 @@ public class DetailPageFragment extends Fragment {
            view.loadUrl(url);
            return true;
 	     }
+		});//can load multiple pages
+		
+		mBack=(Button)v.findViewById(R.id.button_back);
+		mForward=(Button)v.findViewById(R.id.button_forward);
+		mBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				mWeber.goBack();
+			}
+		});
+		mForward.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				mWeber.goForward();
+			}
 		});
 	}
 	

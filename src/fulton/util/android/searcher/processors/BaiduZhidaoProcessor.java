@@ -56,4 +56,10 @@ public class BaiduZhidaoProcessor implements ContentProcessor {
 		return "lm=0&rn=10&pn=0&fr=search&ie=gbk&word=%s";
 	}
 
+	@Override
+	public String getDomain() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

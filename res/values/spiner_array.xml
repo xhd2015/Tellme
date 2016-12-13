@@ -27,5 +27,7 @@
  		<item>http://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application</item>
    		<!-- to use webclientview  -->
  			<item>http://www.cnblogs.com/menlsh/p/3139498.html</item>
+ 		<!-- left+right using linear -->
+ 		<item>http://www.cnblogs.com/xiaoran1129/archive/2013/03/26/2982954.html</item>
  			</string-array>
 </resources>

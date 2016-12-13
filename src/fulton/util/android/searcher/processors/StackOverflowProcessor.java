@@ -28,7 +28,7 @@ public class StackOverflowProcessor implements ContentProcessor {
 			temp=href.get(i).attr("href");
 			if(!temp.startsWith("http"))
 			{
-				temp=getBaseUrl()+temp;
+				temp=getDomain()+temp;
 			}
 			one.put("url",temp);
 			one.put("brief",brief.get(i).text());
@@ -42,6 +42,10 @@ public class StackOverflowProcessor implements ContentProcessor {
 	public String getBaseUrl() {
 		// TODO Auto-generated method stub
 		return "http://stackoverflow.com/search";
+	}
+	
+	public String getDomain(){
+		return "http://stackoverflow.com";
 	}
 
 	@Override

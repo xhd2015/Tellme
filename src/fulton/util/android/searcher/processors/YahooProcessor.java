@@ -53,4 +53,11 @@ public class YahooProcessor implements ContentProcessor {
 		
 	}
 
+
+	@Override
+	public String getDomain() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -28,10 +28,10 @@ public class GuokrProcessor implements ContentProcessor {
 			temp=href.get(i).attr("href");
 			if(!temp.startsWith("http"))
 			{
-				temp=getBaseUrl()+temp;
+				temp=getDomain()+temp;
 			}
 			one.put("url",temp);
-			one.put("brief",brief.get(2*i).text());
+			one.put("brief",brief.get(i).text());
 			res.add(one);
 		}
 		
@@ -47,13 +47,19 @@ public class GuokrProcessor implements ContentProcessor {
 	@Override
 	public String getBaseUrl() {
 		// TODO Auto-generated method stub
-		return "http://www.guokr.com/search/all/";
+		return "http://www.guokr.com/search/all";
 	}
 
 	@Override
 	public String getParameterFormater() {
 		// TODO Auto-generated method stub
 		return "wd=%s";
+	}
+
+	@Override
+	public String getDomain() {
+		// TODO Auto-generated method stub
+		return "http://www.guokr.com";
 	}
 
 }

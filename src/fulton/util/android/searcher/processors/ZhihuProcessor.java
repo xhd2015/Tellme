@@ -29,7 +29,7 @@ public class ZhihuProcessor implements ContentProcessor {
 			temp=href.get(i).attr("href");
 			if(!temp.startsWith("http"))
 			{
-				temp=getBaseUrl()+temp;
+				temp=getDomain()+temp;
 			}
 			one.put("url",temp);
 			one.put("brief",brief.get(i).text());
@@ -49,6 +49,11 @@ public class ZhihuProcessor implements ContentProcessor {
 	public String getBaseUrl() {
 		// TODO Auto-generated method stub
 		return "http://www.zhihu.com/search";
+	}
+	
+	public String getDomain(){
+		
+		return "http://www.zhihu.com";
 	}
 
 	@Override

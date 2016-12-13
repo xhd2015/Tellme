@@ -10,5 +10,6 @@ public interface ContentProcessor {
 	public ArrayList<HashMap<String, String>> process(Document doc);
 	public String getName();
 	public String getBaseUrl();
+	public String getDomain(); //when no prefix specified, this is used
 	public String getParameterFormater();
 }
